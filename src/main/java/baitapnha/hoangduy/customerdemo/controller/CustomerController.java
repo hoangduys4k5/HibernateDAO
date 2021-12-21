@@ -53,8 +53,7 @@ public class CustomerController {
         modelAndView.addObject("customer", Customer);
         return modelAndView;
     }
-	
-	  @GetMapping(value = "/login") 
+	  @GetMapping({"/","/login"}) 
 	  public ModelAndView login(){
 	  ModelAndView modelAndView = new ModelAndView("customer/login");
       modelAndView.addObject("customer", new Customer());
@@ -71,8 +70,6 @@ public class CustomerController {
 		        modelAndView.addObject("message", "UserName or Password is not exists");
 			  return modelAndView;
 		  }
-		  
-     
 	  }
 	  @GetMapping(value = "/register") 
 	  public ModelAndView registerForm(){ 
