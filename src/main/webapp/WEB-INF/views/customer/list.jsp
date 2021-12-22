@@ -18,6 +18,8 @@
             <td>FullName</td>
             <td>Age</td>
             <td>Address</td>
+            <td></td>
+            <td></td>
         </tr>
         <c:forEach var="customer" items="${customers}">
             <tr>
@@ -26,7 +28,9 @@
                 <td>${customer.getPassWord()}</td>
                 <td>${customer.getFullName()}</td>
                 <td>${customer.getAge()}</td>
-                <td>${customer.getAddress()}</td>           
+                <td>${customer.getAddress()}</td>  
+                <td><a href="edit?id=${customer.getId()}">Edit</a></td> 
+                <td><a href="delete?id=${customer.getId()}">Delete</a></td> 
             </tr>
         </c:forEach>
     </table>

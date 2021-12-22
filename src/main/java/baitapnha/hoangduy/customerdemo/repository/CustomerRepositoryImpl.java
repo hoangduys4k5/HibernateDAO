@@ -66,6 +66,14 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 		}
 		return a;
 	}
-	
-    
+
+	@Override
+	public void deleteById(int id) {
+		 Customers.remove(id);
+	}
+
+	@Override
+	public void edit(Customer customer) {	
+		Customers.replace(customer.getId(), customer);
+	}
 }

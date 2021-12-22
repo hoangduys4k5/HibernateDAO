@@ -15,4 +15,6 @@ public interface CustomerRepository {
 	    
 	    boolean findCustomer(Customer customer);
 	    boolean checkCustomer(Customer customer);
+	    void deleteById(int id);
+	    void edit(Customer customer);
 }

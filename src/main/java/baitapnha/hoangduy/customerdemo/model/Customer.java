@@ -1,11 +1,21 @@
 package baitapnha.hoangduy.customerdemo.model;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class Customer {
 	private int id;
+	@NotNull(message = "is required")
+	@Size(min = 1, message = "is required")
 	private String userName;
+	@NotNull(message = "is required")
+	@Size(min = 3, message = "must be greater than or equal to 3 characters")
 	private String passWord;
+	
 	private String fullName;
+	
 	private int age;
+	
 	private String address;
 	public String getUserName() {
 		return userName;

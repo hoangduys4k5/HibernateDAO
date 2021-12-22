@@ -1,12 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: nhat
-  Date: 4/20/18
-  Time: 1:36 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -15,25 +9,24 @@
         .message{
             color: green;
         }
-        .error{
-        color: red;
-        }
     </style>
 </head>
 <%@ page isELIgnored="false" %>
 <body>
-   
-  
+    <h1>Create new Customer</h1>
+    <a href="/customerdemo/customers">Back to product list</a>
     <p>
       <c:if test="${message != null}">
           <span class="message">${message}</span>
       </c:if>
     </p>
-    <form:form action="login" method="post" modelAttribute="customer">
+    <form:form action="edit" method="post" modelAttribute="customer">
         <fieldset>
-            <legend>Login</legend>
+            <legend>Customer information</legend>
             <table>
+             <td> <form:hidden path="id"/> </td>
                 <tr>
+                
                     <td><form:label path="userName">Username:</form:label></td>
                     <td><form:input path="userName"/> </td>
                     <td><form:errors path="userName" cssClass="error"/></td>
@@ -44,11 +37,21 @@
                     <td><form:errors path="passWord" cssClass="error"/></td>
                 </tr>
                 <tr>
-            
+                    <td><form:label path="fullName">Fullname:</form:label></td>
+                    <td><form:input path="fullName"/> </td>
+                </tr>
+                <tr>
+                    <td><form:label path="age">Age:</form:label></td>
+                    <td><form:input path="age"/> </td>
+                </tr>
+                <tr>
+                    <td><form:label path="address">Address:</form:label></td>
+                    <td><form:input path="address"/> </td>
+                </tr>
                 
                 <tr>
                     <td></td>
-                    <td><form:button>Login</form:button> or <a href="/customerdemo/register">Register</td>
+                    <td><form:button>Edit customer</form:button> </td>
                 </tr>
             </table>
         </fieldset>

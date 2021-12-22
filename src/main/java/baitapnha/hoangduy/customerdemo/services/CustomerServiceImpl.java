@@ -38,6 +38,19 @@ public class CustomerServiceImpl implements CustomerService {
 		// TODO Auto-generated method stub
 		 return this.CustomerRepository.checkCustomer(customer);
 	}
+
+	@Override
+	public void deleteById(int id) {
+		this.CustomerRepository.deleteById(id);
+		
+	}
+
+	@Override
+	public void edit(Customer customer) {
+		this.CustomerRepository.edit(customer);
+		
+	}
+	
     
   
 }
