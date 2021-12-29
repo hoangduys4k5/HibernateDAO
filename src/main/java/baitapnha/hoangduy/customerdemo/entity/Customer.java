@@ -1,9 +1,19 @@
-package baitapnha.hoangduy.customerdemo.model;
+package baitapnha.hoangduy.customerdemo.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
+@Entity
+@Table(name="customer")
 public class Customer {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
 	private int id;
 	@NotNull(message = "is required")
 	@Size(min = 1, message = "is required")
@@ -73,6 +83,11 @@ public class Customer {
 	}
 	public Customer() {
 		
+	}
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", userName=" + userName + ", passWord=" + passWord + ", fullName=" + fullName
+				+ ", age=" + age + ", address=" + address + "]";
 	}
 	
 	

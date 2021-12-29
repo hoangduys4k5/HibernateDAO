@@ -2,7 +2,7 @@ package baitapnha.hoangduy.customerdemo.services;
 
 import java.util.List;
 
-import baitapnha.hoangduy.customerdemo.model.Customer;
+import baitapnha.hoangduy.customerdemo.entity.Customer;
 
 
 

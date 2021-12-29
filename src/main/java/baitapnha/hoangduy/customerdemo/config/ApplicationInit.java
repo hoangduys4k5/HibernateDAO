@@ -2,26 +2,25 @@ package baitapnha.hoangduy.customerdemo.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-
-
+/**
+ * @author Ramesh Fadatare
+ */
 public class ApplicationInit extends AbstractAnnotationConfigDispatcherServletInitializer {
-
+ 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Class[] { AppContext.class };
+		//return null;
 	}
-
+ 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		// TODO Auto-generated method stub
-		return new Class [] {ApplicationConfig.class};
+		return new Class[] { ApplicationConfig.class };
 	}
-
+ 
 	@Override
 	protected String[] getServletMappings() {
-		// TODO Auto-generated method stub
-		return new String [] {"/"};
+		return new String[] { "/" };
 	}
-
+ 
 }

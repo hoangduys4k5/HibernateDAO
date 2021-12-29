@@ -3,51 +3,52 @@ package baitapnha.hoangduy.customerdemo.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import baitapnha.hoangduy.customerdemo.model.Customer;
+import baitapnha.hoangduy.customerdemo.dao.CustomerDAO;
+import baitapnha.hoangduy.customerdemo.entity.Customer;
 
-import baitapnha.hoangduy.customerdemo.repository.CustomerRepository;
-
+@Service
 public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
-    public CustomerRepository CustomerRepository;
+    private CustomerDAO customerDAO;
 
     @Override
     public List<Customer> findAll() {
-        return this.CustomerRepository.findAll();
+        return this.customerDAO.findAll();
     }
 
     @Override
     public Customer findById(int id) {
-        return this.CustomerRepository.findById(id);
+        return this.customerDAO.getCustomer(id);
     }
 
     @Override
     public void save(Customer Customer) {
-        this.CustomerRepository.save(Customer);
+        this.customerDAO.saveCustomer(Customer);
     }
     @Override
     public boolean findCustomer(Customer Customer) {
     	
-        return this.CustomerRepository.findCustomer(Customer);
+        return this.customerDAO.findCustomer(Customer);
     }
 
 	@Override
 	public boolean checkCustomer(Customer customer) {
 		// TODO Auto-generated method stub
-		 return this.CustomerRepository.checkCustomer(customer);
+		 return this.customerDAO.checkCustomer(customer);
 	}
 
 	@Override
 	public void deleteById(int id) {
-		this.CustomerRepository.deleteById(id);
+		this.customerDAO.deleteCustomer(id);
 		
 	}
 
 	@Override
 	public void edit(Customer customer) {
-		this.CustomerRepository.edit(customer);
+		this.customerDAO.saveCustomer(customer);
 		
 	}
 	

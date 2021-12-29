@@ -16,17 +16,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import baitapnha.hoangduy.customerdemo.model.Customer;
+import baitapnha.hoangduy.customerdemo.entity.Customer;
 import baitapnha.hoangduy.customerdemo.services.CustomerService;
 
 @Controller
 public class CustomerController {
+	
 	@Autowired
-	public CustomerService CustomerService;
+	private CustomerService customerService;
 
 	@GetMapping("/customers")
 	public ModelAndView list() {
-		List<Customer> Customers = this.CustomerService.findAll();
+		List<Customer> Customers = this.customerService.findAll();
 		ModelAndView modelAndView = new ModelAndView("customer/list");
 		modelAndView.addObject("customers", Customers);
 		return modelAndView;
@@ -41,10 +42,10 @@ public class CustomerController {
 
 	@PostMapping("/new")
 	public ModelAndView createCustomer(@ModelAttribute("customer") Customer customer) {
-		int randomId = (int) (Math.random() * 10000);
-		customer.setId(randomId);// For demo purpose only
+//		int randomId = (int) (Math.random() * 10000);
+//		customer.setId(randomId);// For demo purpose only
 
-		this.CustomerService.save(customer);
+		this.customerService.save(customer);
 
 		ModelAndView modelAndView = new ModelAndView("customer/create");
 		modelAndView.addObject("customer", new Customer());
@@ -54,7 +55,7 @@ public class CustomerController {
 
 	@GetMapping(value = "/view")
 	public ModelAndView view(@RequestParam("id") Integer CustomerId) {
-		Customer Customer = this.CustomerService.findById(CustomerId);
+		Customer Customer = this.customerService.findById(CustomerId);
 		ModelAndView modelAndView = new ModelAndView("customer/view");
 		modelAndView.addObject("customer", Customer);
 		return modelAndView;
@@ -69,14 +70,14 @@ public class CustomerController {
 
 	@PostMapping(value = "/login")
 	public ModelAndView check(@Valid @ModelAttribute("customer") Customer customer, BindingResult theBindingResult) {
-		boolean check = this.CustomerService.findCustomer(customer);
+		boolean check = this.customerService.findCustomer(customer);
 
 		ModelAndView modelAndView = new ModelAndView("redirect:/customers");
 		if (theBindingResult.hasErrors()) {
 			modelAndView.setViewName("customer/login");
 
 			return modelAndView;
-		} else if (check == true) {
+		} else if (check == false) {
 			return modelAndView;
 		} else {
 			modelAndView.setViewName("customer/login");
@@ -96,7 +97,7 @@ public class CustomerController {
 
 	@PostMapping(value = "/register")
 	public ModelAndView register(@Valid @ModelAttribute("customer") Customer customer, BindingResult theBindingResult) {
-		boolean check = this.CustomerService.checkCustomer(customer);
+		boolean check = this.customerService.checkCustomer(customer);
 		ModelAndView modelAndView = new ModelAndView("redirect:/customers");
 		if (theBindingResult.hasErrors()) {
 			modelAndView.setViewName("customer/edit");			
@@ -107,7 +108,7 @@ public class CustomerController {
 			int randomId = (int) (Math.random() * 10000);
 			customer.setId(randomId);// For demo purpose only
 
-			this.CustomerService.save(customer);
+			this.customerService.save(customer);
 
 			modelAndView.setViewName("customer/login");
 			modelAndView.addObject("customer", new Customer());
@@ -124,19 +125,19 @@ public class CustomerController {
 	}
 	@GetMapping(value = "/delete")
 	public ModelAndView delete(@RequestParam("id") Integer CustomerId) {
-		Customer Customer = this.CustomerService.findById(CustomerId);
+		Customer Customer = this.customerService.findById(CustomerId);
 		ModelAndView modelAndView = new ModelAndView("customer/delete");
 		modelAndView.addObject("customer", Customer);
 		return modelAndView;
 	}
 	@PostMapping(value = "/deleteconfirm")
 	public ModelAndView deleteconfirm(@RequestParam("id") Integer CustomerId) {
-		this.CustomerService.deleteById(CustomerId);
+		this.customerService.deleteById(CustomerId);
 		return list();
 	}
 	@GetMapping(value = "/edit")
 	public ModelAndView edit(@RequestParam("id") Integer CustomerId) {
-		Customer Customer = this.CustomerService.findById(CustomerId);
+		Customer Customer = this.customerService.findById(CustomerId);
 		ModelAndView modelAndView = new ModelAndView("customer/edit");
 		modelAndView.addObject("customer", Customer);
 		return modelAndView;
@@ -149,7 +150,7 @@ public class CustomerController {
 			return modelAndView;
 		}
 		else {
-		this.CustomerService.edit(customer);
+		this.customerService.edit(customer);
 		return list();
 	}
 	}
