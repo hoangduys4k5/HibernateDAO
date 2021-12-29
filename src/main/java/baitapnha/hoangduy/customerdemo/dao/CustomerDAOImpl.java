@@ -57,7 +57,12 @@ public class CustomerDAOImpl implements CustomerDAO {
 	@Override
 	public boolean findCustomer(Customer customer) {
 		Session currentSession = sessionFactory.getCurrentSession();
-		
+		List<Customer> query = findAll();
+		for(Customer a : query) {
+			if(a.getUserName().equals(customer.getUserName()) && a.getPassWord().equals(customer.getPassWord())) {
+				return true;
+			}
+		}
 		return false;
 	}
 
